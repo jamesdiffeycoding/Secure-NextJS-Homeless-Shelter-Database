@@ -1,9 +1,23 @@
-# HOME HORIZON `Coders4Chanage`
-![](image-1.png)
 
-gravitar - website where people add images, what email is used depeds on the lgin, the wedsite pulls 
+# Project title
+An App for homeless shelter staff to view, record, and update information about their homeless shelter guests. Priorities included ease-of-use, accessibility to staff with limited technical experience and training time, auth-guarding (to protect guests' data), and ability to access the App from a mobile or computer device.
 
-Deployment Link: https://shelterapp-homehorizon.onrender.com
+We also prioritised the promotion of homeless shelter guests' strengths and wellbeing by highlighting their interests and strengths prominently on their profiles.
+
+# Introduction
+Homeless shelters lack the funding for expensive, bespoke products for their staff to use. Often, homeless shelters have only a few computers with access to guest's data to spare, databases are slow, and shelter staff spend an unfortunate amount of time copying sensitive data from their phones and notepads to the computers. This App addresses a real need.
+
+# DEPLOYMENT
+To view the project online, check out https://shelterapp-homehorizon.onrender.com
+
+# LOCAL HOSTING
+At this time, it is not possible to for us to share this Application for you to run on your local host environment due to the secure back-end databases it relies on. If desired, we could provide the database schema information that you would enable you to do this.
+
+For approved developers on this project, who have access to the environment variables, follow these steps:
+- Clone the repo link and load into VS Code 
+- cd into the "project" sub-folder
+- Open the terminal and run 'npm install'
+- Once these have installed, run 'npm run dev' this will locally run the application
 
 ## CREDITS AND CONTACTS
 This mobile first application was made by Sara Thampi, James Diffey, Alexander Carr, Victoria Eyres, Jasim Chowdhury and Matthew Kirke as a part of School of Code 15th Bootcamp (Final Project)
@@ -14,13 +28,6 @@ Homeless shelter staff report communication issues, lack of organisation, and in
 ## SOLUTION OVERVIEW
 A mobile app that allows staff members to access service user information from an easily accessible database. A checklist to improve the onboarding process for both staff members and potential service users and a list of relevant  referral services in one place.
 
-## HOW TO INSTALL 
-Step by step guide to runnning on local host
-- Clone the repo link and load into VS Code 
-- cd into Final Project 
-- Open the terminal and run 'npm i'. This will install the required modules
-- Once these have installed, run 'npm run dev' this will locally run the application
-
 ## SUPABASE 
 Supabase is an open source databsase aservice alternative to firebase. Is a web service that manages and stores user data efficiently. By combining PostgreSQL and realtime capabilities [Supabase](https://supabase.io/) provides a scalable and performant solution for building applications with robust backend support.
 
@@ -28,13 +35,11 @@ Supabase is an open source databsase aservice alternative to firebase. Is a web 
 Current app features:
 - Staff can successfully login after being provided with login credentials from upper management
 - Staff can see all the service users on the database by tapping on the "View or Edit database"
-- 
-## BUGS BUGS BUGS
 
+## BUGS
+- None recorded at present
 
-
-
-## Setup
+## File structure
 
 Create Next App
 Authentication
@@ -55,31 +60,31 @@ Folder structure
   -These “/displayallsu/id” pages are populated using the generateStaticParams function
 Folders for the page components each page loads (if the Auth Router approves the session)
 
-## STYLING
+## Style guide
 - Every page component has the same structure that incorporate some “global styles” to ensure consistency throughout the webpages. The basic structure is a welcome container at the top for the heading, and a content container with a white glowing box.
 - In this project, stylesheets are set up for every individual page component and baby component. There is also one “globals.css”. These files tidy the code and ensure no file gets too long.
 - Every stylesheet file applies to all pages on the project by default, so class names are vital and we must avoid overlap. For this reason, stylesheets often have class names that are clearly specific to the component they are targeting (e.g. the Dashboard component has class names such as “dash-grid”, instead of “grid”, or the AddSu component has classnames such as “addsu-inputfield” instead of addsu) .
 
 
 
-## TESTING
+## Testing
 - Cypress installed, capable of E2E and Component Tests.
 Only one component test is currently setup
 - The latest version of cypress (13.6.1) is unstable, .0 seems better. Next must be 13.0.0 originally to setup tests.
 
 
-## PACKAGES
+## Packages
 Next, for scaffolding
 Cypress, for testing
 Sonnen Toaster, for pop-up notifications(toasts)
 
-## CACHING
+## Caching
 To minimise the problematic effects of caching (such as edited service user data not updating), workarounds have been used.
 -  the display of service user information is fetched initially then set to a locally stored context variable which updates instantly, even before you press the ‘update’ button. There is a consequence here that if data is edited but the update button is not pressed the new data will show until the page is reloaded (at which point the database’s data will be fetched again)
 -  manually clearing the cache on the Render site (our free deployment), which uses a software called Cloudflare to cache everything possible by default 
 -  clear cache in browser inspect, hold refresh button, empty cache and hard reload
 
-## FUNCTIONALITY ADDED
+## Functionality added
 - Viewing service users in the database
 - Viewing specific user
 - Editing specific service users' information
@@ -88,7 +93,7 @@ To minimise the problematic effects of caching (such as edited service user data
 - Editing the information of newly added service users (only - works for existing data tables)
 - Improved data validation and error handling (currently the popup confirming an update appears regardless of whether there was an error)
 
-TO DO: 
+## Functionality to improve
 - Delete users (shelter manager accounts only)
 - Checklist for staff to work through with service users
 - Intelligent searching database users
