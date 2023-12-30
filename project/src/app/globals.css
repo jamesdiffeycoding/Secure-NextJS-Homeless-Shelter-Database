@@ -1,0 +1,97 @@
+body{
+    /* Size of webpage */
+    width: 95%;
+    max-width: 700px;
+    min-height: 100%;
+
+    /* Background */
+    /* background-image: url('/bluebackground.jpg'); */
+    /* background-color: #09105e; */
+    background: rgb(156,156,198);
+    background: linear-gradient(0deg, rgba(156,156,198,1) 0%, rgba(17,23,105,1) 100%);
+    min-height: 100vh;
+}
+
+/* FONT STYLE */
+
+.black-font {
+    color: black;
+}
+
+.white-font {
+    color: white;
+}
+
+.bold-font {
+    font-weight: bold;
+}
+
+.italic-font {
+    font-style: italic;
+}
+
+/* WELCOME BOXES */
+.global-welcome{
+    color: white;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.global-heading{
+    font-size: 24px;  
+
+}
+.global-description{
+    font-size: 16px;  
+
+}
+
+  /* CONTENT-BOXES */
+
+
+.global-content{
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid white;
+    font-size: 14px;
+}
+
+/* BUTTON SHADOW- home button, back button */
+.global-button-shadow {
+    width: 4rem;
+    height: 4rem;
+    box-shadow: 1px 1px 1px WHITE;
+    border-radius: 10px;
+}
+
+.global-button-shadow:hover{
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+
+}
+
+/* ROUNDED IMAGES */
+
+.global-rounded-border{
+  border-radius: 15%;  
+}
+
+/* FLEX */
+
+.flexbox-center {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+/* LISTS */
+li {
+    text-decoration: underline;
+}
+
+li:hover {
+    cursor: pointer;
+}

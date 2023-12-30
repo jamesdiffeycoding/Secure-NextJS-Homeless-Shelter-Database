@@ -1,0 +1,25 @@
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 10px;
+    width: 100%
+    
+}
+
+.flexbox-item-home {
+    
+    /* background-color: purple; */
+}
+
+.flexbox-item-date {
+    color: white;
+}
+
+
+.flexbox-item-status:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}

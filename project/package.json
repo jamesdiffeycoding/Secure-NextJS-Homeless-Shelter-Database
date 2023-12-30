@@ -1,0 +1,27 @@
+{
+  "name": "final-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "cypress open"
+  },
+  "dependencies": {
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.3.1",
+    "eslint-config-next": "^14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.33.1",
+    "sonner": "^1.2.4"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "next": "^14.0.3"
+  }
+}

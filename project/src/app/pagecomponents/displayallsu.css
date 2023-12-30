@@ -1,0 +1,35 @@
+.displayallsu-explanation {
+color: white;
+text-align: center;
+margin-top: 3rem;
+margin-bottom: 2rem;
+font-size: 24px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.displayallsu-grid{
+display: grid;
+grid-template-columns: 1fr 1fr;
+column-gap: 6rem;
+row-gap: 0.5rem;
+}
+
+.displayallsu-cards {
+font-weight: bold;
+background-color: #d5d8ef;
+border-radius: 12px;
+padding-block: 1rem;
+padding-left: 2rem;
+margin-bottom: 1rem;
+transition: 1s;
+}
+
+.displayallsu-cards:hover {
+    background-color: #7d87d7;
+transition: 1s
+
+}
+
+.displayallsu-card-name {
+color: #19126a;
+}
