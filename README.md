@@ -93,15 +93,20 @@ To minimise the problematic effects of caching (such as edited service user data
 - Editing the information of newly added service users (only - works for existing data tables)
 - Improved data validation and error handling (currently the popup confirming an update appears regardless of whether there was an error)
 
-## Functionality to improve
-- Delete users (shelter manager accounts only)
-- Checklist for staff to work through with service users
-- Intelligent searching database users
-- Automatically input age when date of birth added
-- Audit trails tables (to show how the data has been updated)
-- Improve responsiveness to web and mobile display (e.g., center the display on web pages)
-- Add photo to profiles.
+Features to add / improvements to make
+- DUMMY LOGINS: so that anyone can view that data, perhaps as different roles.
+- AUTHORISATION: login with different real users.
+----- VERA: ability to view and edit data.
+----- TOBIAS: ability to view, edit and delete data.
+----- PAT: ability to view BASIC data.
+- CREATE DATA COMPLETENESS STAT: and display at top of profile and on database page
+- ONBOARDING CHECKLIST: 
+- LAYOUT RESPONSIVENESS:
+- ENCRYPTION OPTIONS: 
+----- Encrypt the data at rest using AES256, linking the data to a private key.
+----- Investigate GDPR and Data Retention policies (deleting data when it is no longer needed). This would be the responsibility of a data protection officer ordinarily.
 
+  
 ## HIGH LEVEL CODE EXPLANATION
 - Displaying service users list
   - Fetching service users table data from supabase and mapping it
