@@ -1,5 +1,4 @@
 // IMPORTS ------------------------------------------------------------------
-import compStyles from "./displayonesu.css";
 import Link from "next/link";
 import Image from "next/image.js";
 import { useState } from "react";

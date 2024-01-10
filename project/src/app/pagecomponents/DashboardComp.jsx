@@ -1,4 +1,3 @@
-import compStyles from "./dashboard.css";
 // import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import { useState, useEffect } from "react";

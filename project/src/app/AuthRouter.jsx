@@ -12,7 +12,6 @@ import DashboardComp from "./pagecomponents/DashboardComp";
 import DisplayAllSUComp from "./pagecomponents/DisplayAllSUComp";
 import DisplayOneSUComp from "./pagecomponents/DisplayOneSUComp";
 import AddSUComp from "./pagecomponents/AddSUComp";
-import EditSUComp from "./pagecomponents/EditSUComp";
 import ReferralLinksComp from "./pagecomponents/ReferralLinksComp";
 import LogoForLogin from "./babycomponents/LogoForLogin";
 

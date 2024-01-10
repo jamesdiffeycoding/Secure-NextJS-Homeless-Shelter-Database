@@ -1,4 +1,3 @@
-import compStyles from "./addsu.css";
 // import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import { useEffect, useState } from "react";
