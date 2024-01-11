@@ -245,9 +245,9 @@ async function supabaseProfileReset() {
   toast("Success", { className: "success-toast", description: "Successfully Reset Service User", duration: 2000, position: "top-left", // onAutoClose: window.location.reload(), //will reload page(after toast disappears)
     style: { background: "#f5f5f5", color: "#111111", border: "3px solid #111111", },
   });
-  // setTimeout(function() {
-  //   location.reload();
-  // }, 2000);
+  setTimeout(function() {
+    location.reload();
+  }, 2000);
   };
 
 // END OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
