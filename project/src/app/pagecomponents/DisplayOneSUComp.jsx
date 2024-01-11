@@ -7,6 +7,7 @@ import React from "react";
 import ServiceUserContext from "../babycomponents/serviceUserContext";
 import { toast } from "sonner";
 import { supabase } from "../AuthRouter";
+import { dummyResetData } from "../displayallsu/helper";
 export const dynamic = "force-dynamic"; //forces next js to revaluate data preventing caching
 export const revalidate = 0; //tells supabase to not use caching
 
@@ -15,12 +16,10 @@ export const revalidate = 0; //tells supabase to not use caching
 // prop taken in: allFetchedDataAboutSpecificSU. This is passed from the "/displayOneSu/page.js" file to the AuthRouter to here through prop drilling.
 // ---- The reason for this is that fetching using an async function and await does NOT work in a jsx file.
 export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) {
-  
   // STATE FOR EDITING DATA
   const [suDataState, setSuDataState] = useState(allFetchedDataAboutSpecificSU);
   // STATE FOR DATA LOAD
   const [data, setData] = useState([]);
-
   useEffect(() => {
     async function fetchData() {
       //try catch to catch errors
@@ -31,7 +30,6 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
           .from("service_users")
           .select("*")
           .eq("user_id", id);
-        console.log("data fetched on viewONEsu", data);
         const profileResponse = await supabase
         .from("service_users")
         .select("*")
@@ -77,9 +75,7 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
         residence,
         comments,
       };
-      console.log("WITHIN UE")
 
-      console.log(fetchedData)
       setSuDataState(fetchedData);
         if (error) {
           throw error;
@@ -93,12 +89,6 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
 
     fetchData();
   }, []);
-  
-  console.log("data state----")
-  console.log(data)
-  console.log("all data fetched state old --------")
-  console.log(allFetchedDataAboutSpecificSU)
-  console.log(id)
 
 
 // DESTRUCTURING ALLFETCHEDDATAABOUTSPECIFIC SU
@@ -112,7 +102,7 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
 // ------- note: 'inline' is the default display option, but we are setting their initial "useState" value to "none", so they are hidden by default.
 // ------- handleClickStrengths is the function that is called when the title or drop-down arrow button is clicked.
   const [displayStatusProfile, setDisplayStatusProfile] = useState("inline");
-  const [displayStatusStrengths, setDisplayStatusStrengths] = useState("none");
+  const [displayStatusStrengths, setDisplayStatusStrengths] = useState("inline");
   const [displayStatusEmergencyContact, setDisplayStatusEmergencyContact] = useState("none");
   const [displayStatusMedical, setDisplayStatusMedical] = useState("none");
   const [displayStatusEmployment, setDisplayStatusEmployment] = useState("none");
@@ -211,14 +201,14 @@ function updateContext(table, column, newInputValue) {
   data[table][0][column] = newInputValue;
   let updatedData = data;
   setSuDataState(updatedData);
-  console.log(suDataState);
+  console.log("Update Context Function Called");
 }
 // END OF FUNCTION FOR UPDATING CONTEXT VALUES OF SU INFORMATION BEFORE SENDING TO DATABASE
 
 
 // START OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
 async function supabaseUpdateOrInsertData(table) {
-  console.log(table);
+  console.log("Supabase Update Or Insert Data Function Called");
   toast("Success", { className: "success-toast", description: "Successfully Edited Service User", duration: 2000, position: "top-left", // onAutoClose: window.location.reload(), //will reload page(after toast disappears)
     style: { background: "#f5f5f5", color: "#111111", border: "3px solid #111111", },
   });
@@ -231,29 +221,90 @@ async function supabaseUpdateOrInsertData(table) {
   }
   // if there is no data, -> INSERT
   else {
-    await supabase .from("strengths") .insert(suDataState[table][0]) .eq("user_id", userID);
+    await supabase .from(table) .insert(suDataState[table][0]) .eq("user_id", userID);
     console.log( `Data did not exist , so data will be inserted for user no. "${userID}".` );
   }
 }
 // END OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
 
+// START OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
+async function supabaseProfileReset() {
+  console.log("Supabase Reset Data Function Called");
+  // part 1: checking to see if data exists
+  // part 2: if there is data, run an UPDATE query for a specific input value
+  await supabase.from("service_users").update(dummyResetData.service_users[id-1]).eq("user_id", userID);
+  await supabase.from("employment_status").update(dummyResetData.employment_status[id-1]).eq("user_id", userID);
+  await supabase.from("medical").update(dummyResetData.medical[id-1]).eq("user_id", userID);
+  // await supabase.from("comments").update(dummyResetData.comments[id-1]).eq("user_id", userID);
+  await supabase.from("residence").update(dummyResetData.residence[id-1]).eq("user_id", userID);
+  await supabase.from("strengths").update(dummyResetData.strengths[id-1]).eq("user_id", userID);
+
+
+  console.log( `Data already existed, so data will be updated for user no. "${userID}""` );
+  console.log(suDataState)
+  toast("Success", { className: "success-toast", description: "Successfully Reset Service User", duration: 2000, position: "top-left", // onAutoClose: window.location.reload(), //will reload page(after toast disappears)
+    style: { background: "#f5f5f5", color: "#111111", border: "3px solid #111111", },
+  });
+  // setTimeout(function() {
+  //   location.reload();
+  // }, 2000);
+  };
+
+// END OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
 
 // START OF RETURN STATEMENT
 return (
 <>
 {/* START OF CONTENT BOX */}
+<div className="onesu-buttons-container">
+<h4 className="white-font">Helper buttons</h4>
+
+<div className="onesu-buttons-grid">
+{/* show all info button */}
+  <div className="displayAllData onesu-display-buttons" onClick={function () {
+    setDisplayStatusComments("inline");
+    setDisplayStatusEmergencyContact("inline");
+    setDisplayStatusEmployment("inline");
+    setDisplayStatusMedical("inline");
+    setDisplayStatusProfile("inline");
+    setDisplayStatusResidence("inline");
+    setDisplayStatusStrengths("inline");
+  }}>Display all data</div>
+    <div className="displayAllData onesu-display-buttons" onClick={function () {
+    setDisplayStatusComments("none");
+    setDisplayStatusEmergencyContact("none");
+    setDisplayStatusEmployment("none");
+    setDisplayStatusMedical("none");
+    setDisplayStatusProfile("none");
+    setDisplayStatusResidence("none");
+    setDisplayStatusStrengths("none");
+  }}>Hide all data</div>
+
+{/* reset button */}
+    { (id >= 1 && id <=6) ? (
+        <div className="onesu-reset-button" onClick={
+            function () { 
+              console.log("Reset Dummy Data Button Pressed");
+              console.log(dummyResetData);
+              supabaseProfileReset();
+              }
+
+        }>
+          Reset this dummy profile to its default values by clicking this button.
+        </div>
+      ): (<></>)}
+</div>
+</div>
+<br></br>
 <section className="global-content">
   <div className="onesu-flexbox-top">
-      <Link href="/displayallsu">
-        <div className="onesu-flexbox-item-serviceusername">
-          <img className="global-button-shadow" src="/backarrow.png" alt="back button icon" />
-        </div>
-      </Link>
     {/* MINI WELCOME BOX (2) DISPLAYING PROFILE NAME. */}
-      <section className="global-welcome">
-        <h1 className="global-heading">{suDataState.service_users[0]?.first_name}'s profile </h1>
-        <p className="global-description">{suDataState.service_users[0]?.first_name} loves {suDataState.strengths[0]?.interest_text_one.toLowerCase()
-              || "something peculiar"}, {suDataState.strengths[0]?.interest_text_two.toLowerCase() || "something musical"} and {suDataState.strengths[0]?.interest_text_three.toLowerCase() || "something surprising"}. 
+      <section className="onesu-welcome">
+      <div className="onesu-toggle-header">
+        </div>
+        <p className="profile-heading">{suDataState.service_users[0]?.first_name}'s profile </p>
+        <p className="global-description">{suDataState.service_users[0]?.first_name} loves {suDataState?.strengths?.[0]?.interest_text_one.toLowerCase()
+              || "something peculiar"}, {suDataState?.strengths?.[0]?.interest_text_two.toLowerCase() || "something musical"} and {suDataState?.strengths?.[0]?.interest_text_three.toLowerCase() || "something surprising"}. 
               </p>
       </section>
       <div className="onesu-avatar global-rounded-border">
@@ -270,7 +321,7 @@ return (
         </div>
         <div className="onesu-toggle-edit" onClick={handleEditProfile}>          Edit        </div>
       </div>
-      <div className="onesu-toggle-information-flexbox black-font" style={{ display: displayStatusProfile }}      >
+      <div className="onesu-toggle-information-flexbox black-font" style={{ display: displayStatusProfile}}      >
         <ServiceUserContext.Provider value={suDataState}>
           <EditablePair dataLabel="First name" table={"service_users"} column={"first_name"} updateContext={updateContext} editMode={editStatusProfile} ></EditablePair>
           <EditablePair dataLabel="Last name" table={"service_users"} column={"last_name"} updateContext={updateContext} editMode={editStatusProfile} ></EditablePair>
@@ -293,8 +344,12 @@ return (
     </div>
 
     {/* STRENGTHS/INTERESTS BOX */}
-    <div className="onesu-toggle-container">
+    <div className="onesu-toggle-container-strengths">
       <div className="onesu-toggle-header">
+          <div className="onesu-emoji-container tooltip"> 
+              <span class="tooltiptext">Too often, homeless shelter users are not valued. People experiencing homelessness are much more than their struggles.</span>
+              <Image src={"/star.png"} alt="star" width={50} height={50} priority className="global-emoji" />
+          </div>
         <div className="onesu-toggle-title" onClick={handleDisplayClickStrengths} >
           <span>Strengths & Interests</span>
           <Image src={ displayStatusStrengths === "none" ? "/arrowup.png" : "/arrowdown.png" } alt="collapse headings button" width="50" height="15" className="link" />
@@ -395,29 +450,6 @@ return (
         </ServiceUserContext.Provider>
       </div>
     </div>
-    {/* COMMENTS */}
-    <div className="onesu-toggle-container">
-      <div className="onesu-toggle-header">
-        <div className="onesu-toggle-title" onClick={handleDisplayClickComments} >
-          <span>Comments</span>
-          <Image src={ displayStatusComments === "none" ? "/arrowup.png" : "/arrowdown.png" } alt="collapse headings button" width="50" height="15" className="link" />
-        </div>
-        <div className="onesu-toggle-edit" onClick={handleEditComments}> Edit </div>
-      </div>
-      <div className="onesu-toggle-information-flexbox" style={{ display: displayStatusComments }} >
-        <ServiceUserContext.Provider value={suDataState}>
-          <EditablePair dataLabel="Comment Text" table={"comments"} column={"comment_text"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
-          <EditablePair dataLabel="Comment Date" table={"comments"} column={"comment_date"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
-          <EditablePair dataLabel="Staff Name" table={"comments"} column={"staff_name"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
-          <br></br>
-          <div className="onesu-update-container">
-            <div className="onesu-update-btn" style={{ display: editStatusComments ? "inline" : "none" }} onClick={function () { supabaseUpdateOrInsertData("comments"); setEditStatusComments(false)}} >
-              UPDATE
-            </div>
-          </div>
-        </ServiceUserContext.Provider>
-      </div>
-    </div>
 
     {/* RESIDENCE */}
     <div className="onesu-toggle-container">
@@ -442,6 +474,30 @@ return (
         </ServiceUserContext.Provider>
       </div>
       </div>
+
+    {/* COMMENTS */}
+    <div className="onesu-toggle-container">
+      <div className="onesu-toggle-header">
+        <div className="onesu-toggle-title" onClick={handleDisplayClickComments} >
+          <span>Comments</span>
+          <Image src={ displayStatusComments === "none" ? "/arrowup.png" : "/arrowdown.png" } alt="collapse headings button" width="50" height="15" className="link" />
+        </div>
+        {/* <div className="onesu-toggle-edit"> Edit </div> */}
+      </div>
+      <div className="onesu-toggle-information-flexbox" style={{ display: displayStatusComments }} >
+        <ServiceUserContext.Provider value={suDataState}>
+          <EditablePair dataLabel="Comment Text" table={"comments"} column={"comment_text"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
+          <EditablePair dataLabel="Comment Date" table={"comments"} column={"comment_date"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
+          <EditablePair dataLabel="Staff Name" table={"comments"} column={"staff_name"} updateContext={updateContext} editMode={editStatusComments} ></EditablePair>
+          <br></br>
+          <div className="onesu-update-container">
+            <div className="onesu-update-btn" style={{ display: editStatusComments ? "inline" : "none" }} onClick={function () { supabaseUpdateOrInsertData("comments"); setEditStatusComments(false)}} >
+              UPDATE
+            </div>
+          </div>
+        </ServiceUserContext.Provider>
+      </div>
+    </div>
 </section>
 
   </>

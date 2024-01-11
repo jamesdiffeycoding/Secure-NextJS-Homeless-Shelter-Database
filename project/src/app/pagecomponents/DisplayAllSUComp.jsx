@@ -35,7 +35,6 @@ export default function DisplayAllSUComp() {
   
       fetchData();
     }, []);
-    console.log(data);
     return (
         <>
           {/* WELCOME BOX */}
@@ -57,5 +56,7 @@ export default function DisplayAllSUComp() {
                 ))}
             </div>        
           </section>
+          <br></br>
         </>
+  
     )}

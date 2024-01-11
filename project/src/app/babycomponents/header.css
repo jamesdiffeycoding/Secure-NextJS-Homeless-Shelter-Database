@@ -3,6 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(10, 80, 150);
+    padding-top: 0.35rem;
+    width: 100%;
     /* padding: 10px; */
 }
 
@@ -15,3 +18,7 @@
     transition: 1s;
 }
 
+.header-item {
+    padding-inline: 1rem;
+
+}

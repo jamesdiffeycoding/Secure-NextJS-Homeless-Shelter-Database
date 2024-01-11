@@ -11,6 +11,11 @@ export default function Header({ staffName }) {
           <BackButton />
         </div>
         <div>
+        <div className="header-name header-item">
+            <h2>Home Horizon: Homeless Shelter App</h2>
+        </div>
+        </div>
+        <div>
           <div className="flexbox-container-logoforlogin">
                 <Image src="/lock.png" alt="security lock" width="50" height="50" className="security lock"/>
         <Image

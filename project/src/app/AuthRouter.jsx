@@ -64,7 +64,6 @@ export default function AuthRouter({
           if (data && data.length > 0) {
             const staffName = data[0].first_name;
             setStaffName(staffName);
-            console.log(staffName); // Log the fetched name
           }
         } catch (error) {
           console.error("Unexpected error:", error.message);
@@ -107,9 +106,9 @@ export default function AuthRouter({
       Want to try using the site's features with dummy data? 
       </strong>
       <div>
-        <button class="dummy-login" onClick={(handleDisplayClickDummy)}>Click here to see login details for this:
+        <button className="dummy-login" onClick={(function () {handleDisplayClickDummy})}>Click here to see login details for this:
         </button>
-        <div class="dummy-login-details" style={{display: displayStatusDummy}}>
+        <div className="dummy-login-details" style={{display: displayStatusDummy}}>
           <p>Email address: jamesdiffey8@gmail.com</p>
           <p>Password: abcdef</p>
           <div>Access Allowances: 

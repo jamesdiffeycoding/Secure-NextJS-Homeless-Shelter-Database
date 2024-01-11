@@ -14,7 +14,7 @@ body{
 }
 
 main {
-    max-width: 800px;
+    width: 1000px;
     border-inline: 5px solid rgb(255, 255, 255);
     padding-inline: 5%;
     margin-left:auto;
@@ -48,9 +48,24 @@ main {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.onesu-welcome{
+  color: rgb(10, 80, 150);
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  padding: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
 .global-heading{
     font-size: 24px;  
+}
 
+.profile-heading{
+  font-size: 24px;  
+  margin-top: 0;
+  padding-top: 0;
 }
 .global-description{
     font-size: 16px;  
@@ -78,6 +93,7 @@ main {
 
 .global-button-shadow:hover{
     box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+    cursor:pointer;
 
 }
 
@@ -116,7 +132,6 @@ li:hover {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 1rem;
     row-gap: 0.5rem;
-    /* background-color: #2e3ca1; */
     /* border: 1px solid white; */
   }
   
@@ -152,6 +167,8 @@ li:hover {
   .dash-grid-row-3-button:hover{
     background-color: rgb(10, 104, 197, 0.7);
     transition: 1s;
+    cursor:pointer;
+
   }
   
   .dash-grid-row-3-button1{
@@ -231,11 +248,14 @@ li:hover {
     padding-left: 2rem;
     margin-bottom: 1rem;
     transition: 1s;
+    padding-right: 20%;
     }
     
     .displayallsu-cards:hover {
         transition: 1s;
         background-color: rgb(112, 171, 230);
+        cursor:pointer;
+
     }
     
     .displayallsu-card-name {
@@ -256,6 +276,24 @@ li:hover {
     gap: 1rem;
     padding-block: 1rem;
   }
+  
+  .onesu-buttons-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    background-color: rgba(156, 198, 243, 0.2);
+    border-radius: 30px;
+  }
+  
+  .onesu-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    row-gap: 0rem;
+    margin-top: 0;
+    border-radius: 30px;
+  }
+  
   
   /* WELCOME BOX  */
   .onesu-flexbox-top {
@@ -287,6 +325,15 @@ li:hover {
     margin-bottom: 1rem;
     padding-block: 2rem;
   }
+  .onesu-toggle-container-strengths {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgba(156, 198, 243, 0.253);
+    margin-bottom: 1rem;
+    padding-block: 2rem;
+  }
   
   .onesu-toggle-header {
     display: flex;
@@ -294,6 +341,7 @@ li:hover {
     justify-content: space-between;
     padding-inline: 2rem;
     margin-bottom: 1rem;
+
   }
   
   .onesu-item-back{
@@ -357,6 +405,85 @@ li:hover {
     
   }
   
+  .onesu-emoji-container{
+    position: relative;
+    width: 10px;
+    height: 10px;
+  }
+  .global-emoji {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -120%);
+    rotate: -20deg;
+
+}
+
+.header-name {
+  color: white;
+}
+
+.global-fact {
+
+}
+.global-emoji:hover {
+  filter: contrast(150%)
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(156, 198, 243, 1);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  color: rgb(10, 80, 150);
+
+}
+.tooltip-footer .tooltiptext-footer {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(156, 198, 243, 1);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  color: rgb(10, 80, 150);
+
+}
+
+
+.tooltip-footer:hover .tooltiptext-footer {
+  visibility: visible;
+  opacity: 1;
+  /* bottom: 500%; */
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  bottom: 500%;
+}
   /* EDIT BUTTON ________________________________________*/
   .onesu-edit-button {
     /* border: 1px solid red; */
@@ -494,6 +621,8 @@ li:hover {
 .referrallinks-link-text:hover {
   background-color: rgb(10, 104, 197, 0.7);
   transition: 1s;
+  cursor:pointer;
+
 }
 
 /* ---------------------------------------- */
@@ -520,7 +649,55 @@ li:hover {
 .dummy-login:hover{
   background-color: rgb(10, 104, 197, 0.7);
   transition: 1s;
+  cursor:pointer;
+
 }
 .login-heading-text{
   color: white;
+}
+
+
+.onesu-display-buttons{
+  background-color: rgb(10, 80, 150);
+  border: white 1px solid;
+  box-shadow: 0.2rem 0.2rem white;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: 1s;
+  margin-top: 2rem;
+  color: white;
+}
+.onesu-reset-button{
+  background-color: rgb(10, 80, 150);
+  border: white 1px solid;
+  box-shadow: 0.2rem 0.2rem white;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: 1s;
+  margin-top: 2rem;
+  color: white;
+  grid-column: 1 / -1;}
+
+
+  .onesu-reset-button:hover, .onesu-display-buttons:hover{
+    background-color: rgb(10, 104, 197, 0.7);
+    transition: 1s;
+    cursor:pointer;
+  }
+.dummy-reset{
+  background-color: rgb(10, 80, 150);
+  border: white 1px solid;
+  box-shadow: 0.2rem 0.2rem white;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: 1s;
+  margin-top: 2rem;
+  color: white;
+  width: 65%;
+}
+
+.dummy-reset:hover{
+  background-color: rgb(10, 104, 197, 0.7);
+  transition: 1s;
+  cursor:pointer;
 }

@@ -56,11 +56,14 @@ export default function DashboardComp({staffName}) {
     
     return months[parseInt(month) - 1];
   }
+
   return (
     <>  
     <div className="white-font"> {/* <--- This div affects the whole page */}
     {/* WELCOME BOX */}
     <section className="global-welcome">
+      <div className="onesu-toggle-header">
+        </div>
         <h1 className="global-heading">Welcome to your dashboard, {staffName}
         </h1>
         <p className="global-description">Today's date is {convertDDMMYYYY(todayDateString)}</p>
