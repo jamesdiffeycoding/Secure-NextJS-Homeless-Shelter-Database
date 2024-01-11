@@ -112,6 +112,13 @@ export default function AuthRouter({
         <div class="dummy-login-details" style={{display: displayStatusDummy}}>
           <p>Email address: jamesdiffey8@gmail.com</p>
           <p>Password: abcdef</p>
+          <div>Access Allowances: 
+          <ul>
+            <li>view all data</li>
+            <li>edit data for approved users</li>
+            <li>add basic information</li>
+          </ul>
+          </div>
 
         </div>
       </div>

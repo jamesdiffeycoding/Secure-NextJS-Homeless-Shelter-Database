@@ -10,14 +10,18 @@ export default function Header({ staffName }) {
         <div className="flexbox-item-home">
           <BackButton />
         </div>
-        <div className="flexbox-item-title">
-        </div>
+        <div>
+          <div className="flexbox-container-logoforlogin">
+                <Image src="/lock.png" alt="security lock" width="50" height="50" className="security lock"/>
         <Image
               src="/placeholderpersonblue.png"
               alt="profile image"
               width="55"
               height="60"
         />
+            </div>
+            
+          </div>
       </div>
   );
 }
