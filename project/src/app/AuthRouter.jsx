@@ -87,6 +87,7 @@ export default function AuthRouter({
   const [displayStatusDummy, setDisplayStatusDummy] = useState("none");
 
   function handleDisplayClickDummy() {
+    console.log("Handle Display Click Dummy Clicked")
     if (displayStatusDummy == "none") { setDisplayStatusDummy("inline");
     } else { setDisplayStatusDummy("none")}
   }
@@ -106,8 +107,10 @@ export default function AuthRouter({
       Want to try using the site's features with dummy data? 
       </strong>
       <div>
-        <button className="dummy-login" onClick={(function () {handleDisplayClickDummy})}>Click here to see login details for this:
+        <div onClick={(function () {handleDisplayClickDummy()})}>
+        <button className="dummy-login">Click here to see login details for a site with dummy data:
         </button>
+        </div>
         <div className="dummy-login-details" style={{display: displayStatusDummy}}>
           <p>Email address: jamesdiffey8@gmail.com</p>
           <p>Password: abcdef</p>
@@ -116,9 +119,9 @@ export default function AuthRouter({
             <li>view all data</li>
             <li>edit data for approved users</li>
             <li>add basic information</li>
+            <li>reset dummy user information</li>
           </ul>
           </div>
-
         </div>
       </div>
       </div>
