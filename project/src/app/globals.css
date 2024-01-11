@@ -15,7 +15,6 @@ body{
 
 main {
     width: 1000px;
-    border-inline: 5px solid rgb(255, 255, 255);
     padding-inline: 5%;
     margin-left:auto;
     margin-right: auto;
