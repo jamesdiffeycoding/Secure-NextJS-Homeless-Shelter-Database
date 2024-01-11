@@ -9,7 +9,7 @@ body{
     /* Background */
     /* background-color: #09105e; */
     background: rgb(156,156,198);
-    background: linear-gradient(0deg, rgb(122, 122, 190) 0%, rgba(17,23,105,1) 100%);
+    background: linear-gradient(0deg, rgb(130, 166, 220) 0%, rgb(50, 131, 213) 100%);
     min-height: 100vh;
 }
 
