@@ -15,6 +15,7 @@ import { generateStaticParams } from "../helper.js";
 generateStaticParams();
 
 // AUTHROUTER WITH PROPS -----------------------------------------------------
+
 export default async function DisplayOneSU({ params }) {
   const id = params.id;
   let randomNumberForAvoidingCache = Math.floor(Math.random() * 99999999)
@@ -22,12 +23,15 @@ export default async function DisplayOneSU({ params }) {
     id, randomNumberForAvoidingCache
   );
 
+  
+
   return (
     <>
       <div>hi {randomNumberForAvoidingCache}</div>
       <AuthRouter
         pageName={"displayonesu"}
-        allFetchedDataAboutSpecificSU={allFetchedDataAboutSpecificSU}
+        allFetchedDataAboutSpecificSU={allFetchedDataAboutSpecificSU.props.fetchedData}
+        id={id}
       />
     </>
   );
