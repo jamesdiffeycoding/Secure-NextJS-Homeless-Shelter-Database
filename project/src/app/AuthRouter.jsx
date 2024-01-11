@@ -14,6 +14,7 @@ import DisplayOneSUComp from "./pagecomponents/DisplayOneSUComp";
 import AddSUComp from "./pagecomponents/AddSUComp";
 import ReferralLinksComp from "./pagecomponents/ReferralLinksComp";
 import LogoForLogin from "./babycomponents/LogoForLogin";
+import LockForLogin from "./babycomponents/LockForLogin";
 
 //Supabase client setup. Exported to other pages
 
@@ -84,21 +85,50 @@ export default function AuthRouter({
     return () => subscription.unsubscribe();
   }, []);
 
+  const [displayStatusDummy, setDisplayStatusDummy] = useState("none");
+
+  function handleDisplayClickDummy() {
+    if (displayStatusDummy == "none") { setDisplayStatusDummy("inline");
+    } else { setDisplayStatusDummy("none")}
+  }
+
 //if there is no session(not logged in), you are redirected to the login page
   if (!session) {
-    return <>
+    return <>    <div className="login-master">
       <LogoForLogin></LogoForLogin>
-      <div className="flexbox-center"><h1 data-test="hero-heading" className="white-font">Home Horizon</h1>
+      <LockForLogin></LockForLogin>
+      <div className="flexbox-center"><h1 data-test="hero-heading" className="white-font">Home Horizon: Secure Homeless Shelter Database Application</h1>
       </div>
+      <div className="dummy-login-container">
+
+      <div><strong>
+        <h3>Guest viewers</h3>
+
+      Want to try using the site's features with dummy data? 
+      </strong>
+      <div>
+        <button class="dummy-login" onClick={(handleDisplayClickDummy)}>Click here to see login details for this:
+        </button>
+        <div class="dummy-login-details" style={{display: displayStatusDummy}}>
+          <p>Email address: jamesdiffey8@gmail.com</p>
+          <p>Password: abcdef</p>
+
+        </div>
+      </div>
+      </div>
+      <br></br>
+      </div>
+      <br></br>
 
       {/* this is where you can customise the display of the supabase auth. */}
+      <h2 className="login-heading-text">Login</h2>
       <Auth supabaseClient={supabase} appearance={{
             theme: ThemeSupa,
             variables: {
               default: {
                 colors: {
-                  brand: "#7b76c4",
-                  brandAccent: "darkblue",
+                  brand: "rgb(10, 80, 150)",
+                  brandAccent: "rgba(10, 80, 150, 0.7);",
                 },
               },
             },
@@ -108,6 +138,7 @@ export default function AuthRouter({
             }
             //this turns off the google, github etc... links
           }} providers={[]} showLinks={false}/>
+          </div>
     </>
   }
   // redirector

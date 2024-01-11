@@ -9,14 +9,14 @@ body{
     /* Background */
     /* background-color: #09105e; */
     background: rgb(156,156,198);
-    background: linear-gradient(0deg, rgb(130, 166, 220) 0%, rgb(50, 131, 213) 100%);
+    background: linear-gradient(0deg, rgb(83, 158, 201) 0%, rgb(10, 104, 197) 100%);
     min-height: 100vh;
 }
 
 main {
     max-width: 800px;
-    border: 5px solid blue;
-    padding-block: 5%;
+    border-inline: 5px solid rgb(255, 255, 255);
+    padding-inline: 5%;
     margin-left:auto;
     margin-right: auto;
 }
@@ -139,7 +139,7 @@ li:hover {
   
   /* row 3 */
   .dash-grid-row-3-button{
-    background-color: rgb(81, 86, 150);
+    background-color: rgb(10, 80, 150);
     border: white 1px solid;
     box-shadow: 0.2rem 0.2rem white;
     border-radius: 10px;
@@ -150,9 +150,8 @@ li:hover {
   }
   
   .dash-grid-row-3-button:hover{
-    background-color: #a0a8ea;
+    background-color: rgb(10, 104, 197, 0.7);
     transition: 1s;
-    color: black;
   }
   
   .dash-grid-row-3-button1{
@@ -235,13 +234,12 @@ li:hover {
     }
     
     .displayallsu-cards:hover {
-        background-color: #7d87d7;
-    transition: 1s
-    
+        transition: 1s;
+        background-color: rgb(112, 171, 230);
     }
     
     .displayallsu-card-name {
-    color: #19126a;
+    color: rgb(5, 45, 85);
     }
     
 
@@ -285,7 +283,7 @@ li:hover {
     flex-direction: column;
     justify-content: center;
     border-radius: 10px;
-    background-color: rgba(156,156,198,0.5);
+    background-color: rgba(10, 36, 63, 0.253);
     margin-bottom: 1rem;
     padding-block: 2rem;
   }
@@ -317,7 +315,7 @@ li:hover {
   }
   .onesu-update-btn {
     
-    background-color: #f5f5f5;
+    background-color: rgb(10, 80, 150);;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -334,7 +332,7 @@ li:hover {
   .onesu-toggle-title:hover,
   .onesu-toggle-edit:hover,
   .onesu-update-btn:hover {
-    background-color: #3D4187;
+    background-color: rgb(105, 170, 240);
     cursor: pointer;
   }
   
@@ -342,6 +340,8 @@ li:hover {
     display: grid;
     flex-direction: column;
     justify-content: center;  
+    color: white;
+
   }
   
   .onesu-toggle-edit {
@@ -476,10 +476,6 @@ li:hover {
     transition: 1s;
     }
     
-.referrallinks-grid-card:hover {
-    background-color: #7d87d7;
-    transition: 1s
-    }
 .referrallinks-section-example{
     color: black;
 }
@@ -489,5 +485,42 @@ li:hover {
 }
 
 .referrallinks-link-text {
-    margin-right: 30px;
+    margin-right: 10%;
+    color:white;
+    padding: 5%;
+    background-color: rgb(10, 80, 150);
+    border-radius:10px
+}
+.referrallinks-link-text:hover {
+  background-color: rgb(10, 104, 197, 0.7);
+  transition: 1s;
+}
+
+/* ---------------------------------------- */
+/* LOGIN SCREEN ---------------------- */
+
+.dummy-login-container {
+  background-color: rgba(255, 255, 255, 0.651);
+  border-radius: 10px;
+  padding: 1rem;
+  color: rgb(10, 80, 150);
+}
+
+.dummy-login{
+  background-color: rgb(10, 80, 150);
+  border: white 1px solid;
+  box-shadow: 0.2rem 0.2rem white;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: 1s;
+  margin-top: 2rem;
+  color: white;
+}
+
+.dummy-login:hover{
+  background-color: rgb(10, 104, 197, 0.7);
+  transition: 1s;
+}
+.login-heading-text{
+  color: white;
 }

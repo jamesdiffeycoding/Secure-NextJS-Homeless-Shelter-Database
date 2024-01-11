@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import babyCompStyles from "./logoforlogin.css"
+
 
 export default function LogoForLogin() {
     return (
@@ -8,7 +8,7 @@ export default function LogoForLogin() {
 
         <Link href="/dashboard">
             <div className="flexbox-container-logoforlogin">
-                <Image src="/logowhite.png" alt="logo" width="300" height="300" className="logoforlogin"/>
+                <Image src="/lock.png" alt="security lock" width="100" height="100" className="security lock"/>
             </div>
         </Link>
         </>
