@@ -26,6 +26,7 @@ export const supabase = createClient(supabaseURL, supabaseKey);
 export default function AuthRouter({
   pageName,
   allFetchedDataAboutSpecificSU,
+  id
 }) {
   
   //supabase sets up a session object. 
@@ -129,6 +130,7 @@ export default function AuthRouter({
       <Header staffName={staffName} />
         <DisplayOneSUComp
           allFetchedDataAboutSpecificSU={allFetchedDataAboutSpecificSU}
+          id={id}
         /></>
       )
     case "editsu":

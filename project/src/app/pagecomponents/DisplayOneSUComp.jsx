@@ -1,7 +1,7 @@
 // IMPORTS ------------------------------------------------------------------
 import Link from "next/link";
 import Image from "next/image.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditablePair from "../babycomponents/EditablePair";
 import React from "react";
 import ServiceUserContext from "../babycomponents/serviceUserContext";
@@ -14,12 +14,114 @@ export const revalidate = 0; //tells supabase to not use caching
 // START OF DISPLAY ONE SU COMPONENT -------------------------------------------------------------------------
 // prop taken in: allFetchedDataAboutSpecificSU. This is passed from the "/displayOneSu/page.js" file to the AuthRouter to here through prop drilling.
 // ---- The reason for this is that fetching using an async function and await does NOT work in a jsx file.
-export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU }) {
+export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) {
+  
+  // STATE FOR EDITING DATA
+  const [suDataState, setSuDataState] = useState(allFetchedDataAboutSpecificSU);
+  // STATE FOR DATA LOAD
+  const [data, setData] = useState([]);
+  const [statement, setStatement] = useState("Interests");
+
+  useEffect(() => {
+    async function fetchData() {
+      //try catch to catch errors
+      try {
+        //supabase-specific syntax for a SQL query .from('service_users').select('*') instead of SELECT * from service_users
+        // data from supabase is fetched as an object - this is deconstructed as data and error
+        const { data, error } = await supabase
+          .from("service_users")
+          .select("*")
+          .eq("user_id", id);
+        console.log("data fetched on viewONEsu", data);
+        const profileResponse = await supabase
+        .from("service_users")
+        .select("*")
+        .eq("user_id", id);
+    
+      const strengthsResponse = await supabase
+        .from("strengths")
+        .select("*")
+        .eq("user_id", id);
+    
+      const medicalResponse = await supabase
+        .from("medical")
+        .select("*")
+        .eq("user_id", id);
+    
+      const employment_statusResponse = await supabase
+        .from("employment_status")
+        .select("*")
+        .eq("user_id", id);
+    
+      const residenceResponse = await supabase
+        .from("residence")
+        .select("*")
+        .eq("user_id", id);
+    
+      const commentsResponse = await supabase
+        .from("comments")
+        .select("*")
+        .eq("user_id", id);
+    
+      const service_users = profileResponse?.data;
+      const strengths = strengthsResponse?.data;
+      const medical = medicalResponse?.data;
+      const employment_status = employment_statusResponse?.data;
+      const residence = residenceResponse?.data;
+      const comments = commentsResponse?.data;
+    
+      let fetchedData = {
+        service_users,
+        strengths,
+        medical,
+        employment_status,
+        residence,
+        comments,
+      };
+      console.log("WITHIN UE")
+
+      console.log(fetchedData)
+      setSuDataState(fetchedData);
+        if (error) {
+          throw error;
+        }
+
+        setData(fetchedData);
+      } catch (error) {
+        console.error("Error fetching data on viewONEsu:", error.message);
+      }
+    }
+
+    fetchData();
+    // START OF INTEREST STATEMENT FORMULATION
+    let interestStatement = `${suDataState.service_users[0]?.first_name} loves `
+    if (suDataState.strengths[0]?.interest_text_one != undefined) {
+      interestStatement += suDataState.strengths[0]?.interest_text_one.toLowerCase()
+    }
+    if (suDataState.strengths[0]?.interest_text_two != undefined) {
+      interestStatement += ", "
+      interestStatement += suDataState.strengths[0]?.interest_text_two.toLowerCase()
+    }
+    if (suDataState.strengths[0]?.interest_text_three != undefined) {
+      interestStatement += " and "
+      interestStatement += suDataState.strengths[0]?.interest_text_three.toLowerCase()
+      interestStatement += "."
+    }
+    if(suDataState.strengths[0]?.interest_text_one==undefined && suDataState.strengths[0]?.interest_text_two==undefined && suDataState.strengths[0]?.interest_text_three == undefined) {
+      interestStatement = `Why not ask what ${suDataState.service_users[0]?.first_name} loves?`
+    }
+    setStatement(interestStatement)
+    // END OF INTEREST STATEMENT FORMULATION
+  }, []);
+  
+  console.log("data state----")
+  console.log(data)
+  console.log("all data fetched state old --------")
+  console.log(allFetchedDataAboutSpecificSU)
+  console.log(id)
+
 
 // DESTRUCTURING ALLFETCHEDDATAABOUTSPECIFIC SU
-// This allows us to more concisely write code in this file to, for example, display the SU's name and interests.
-// ---- For example instead of writing "allFetchedDataAboutSpecificSU.strengths", we can just write "strengths"
-  const { service_users, strengths, medical, employment_status, residence, comments, } = allFetchedDataAboutSpecificSU;
 
 // DECLARATION OF USERID VALUE, WHICH WILL BE PASSED AS A PROP IN EVERY USECONTEXT() FUNCTION AND SUPABASEUPDATEORINSERTDATA() QUERY BELOW
   let userID = allFetchedDataAboutSpecificSU.service_users[0].user_id;
@@ -29,7 +131,7 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU }) {
 // ------- pressing the Strengths title or drop-down arrow button toggles whether the EditablePair components (which can return divs or inputs) display or are hidden.
 // ------- note: 'inline' is the default display option, but we are setting their initial "useState" value to "none", so they are hidden by default.
 // ------- handleClickStrengths is the function that is called when the title or drop-down arrow button is clicked.
-  const [displayStatusProfile, setDisplayStatusProfile] = useState("none");
+  const [displayStatusProfile, setDisplayStatusProfile] = useState("inline");
   const [displayStatusStrengths, setDisplayStatusStrengths] = useState("none");
   const [displayStatusEmergencyContact, setDisplayStatusEmergencyContact] = useState("none");
   const [displayStatusMedical, setDisplayStatusMedical] = useState("none");
@@ -124,13 +226,10 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU }) {
 // END OF STATE AND FUNCTION DECLARATION FOR HANDLING 'EDIT MODE' OF EACH TABLE
 
 
-// STATE FOR EDITING DATA
-const [suDataState, setSuDataState] = useState(allFetchedDataAboutSpecificSU);
-
 // START OF FUNCTION FOR UPDATING CONTEXT VALUES OF SU INFORMATION BEFORE SENDING TO DATABASE
 function updateContext(table, column, newInputValue) {
-  allFetchedDataAboutSpecificSU[table][0][column] = newInputValue;
-  let updatedData = allFetchedDataAboutSpecificSU;
+  data[table][0][column] = newInputValue;
+  let updatedData = data;
   setSuDataState(updatedData);
   console.log(suDataState);
 }
@@ -158,24 +257,6 @@ async function supabaseUpdateOrInsertData(table) {
 }
 // END OF FUNCTION TO UPDATE/INSERT DATA, INCLUDING TOAST POPUP
 
-// START OF INTEREST STATEMENT FORMULATION
-let interestStatement = `${service_users[0]?.first_name} loves `
-if (strengths[0]?.interest_text_one != undefined) {
-  interestStatement += strengths[0]?.interest_text_one.toLowerCase()
-}
-if (strengths[0]?.interest_text_two != undefined) {
-  interestStatement += ", "
-  interestStatement += strengths[0]?.interest_text_two.toLowerCase()
-}
-if (strengths[0]?.interest_text_three != undefined) {
-  interestStatement += " and "
-  interestStatement += strengths[0]?.interest_text_three.toLowerCase()
-  interestStatement += "."
-}
-if(strengths[0]?.interest_text_one==undefined && strengths[0]?.interest_text_two==undefined && strengths[0]?.interest_text_three == undefined) {
-  interestStatement = `Why not ask what ${service_users[0]?.first_name} loves?`
-}
-// END OF INTEREST STATEMENT FORMULATION
 
 // START OF RETURN STATEMENT
 return (
@@ -198,8 +279,8 @@ return (
       </Link>
     {/* MINI WELCOME BOX (2) DISPLAYING PROFILE NAME. */}
       <section className="global-welcome">
-        <h1 className="global-heading">{service_users[0]?.first_name}'s profile </h1>
-        <p className="global-description">{interestStatement}</p>
+        <h1 className="global-heading">{suDataState.service_users[0]?.first_name}'s profile </h1>
+        <p className="global-description">{statement}</p>
       </section>
       <div className="onesu-avatar global-rounded-border">
         <Image src={"/placeholderpersonblue.png"} alt="su avatar" width={120} height={120} priority className="onesu-avatar-pic global-rounded-border" />

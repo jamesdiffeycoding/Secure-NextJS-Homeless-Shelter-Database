@@ -63,8 +63,6 @@ export async function fetchSpecificSUDataFromSupabase(id) {
     .select("*")
     .eq("user_id", id);
 
-  const photoResponse = await supabase.from("").sel;
-
   const service_users = profileResponse?.data;
   const strengths = strengthsResponse?.data;
   const medical = medicalResponse?.data;
@@ -80,7 +78,15 @@ export async function fetchSpecificSUDataFromSupabase(id) {
     residence,
     comments,
   };
-  return fetchedData;
+  return {
+    props: {
+      fetchedData,
+    },
+    // Set cache control headers to prevent caching
+    headers: {
+      'Cache-Control': 'no-store',
+    },
+  };
 }
 
 // GENERATE STATIC PARAMS ----------------------------------------------------
