@@ -18,16 +18,14 @@ generateStaticParams();
 
 export default async function DisplayOneSU({ params }) {
   const id = params.id;
-  let randomNumberForAvoidingCache = Math.floor(Math.random() * 99999999)
   const allFetchedDataAboutSpecificSU = await fetchSpecificSUDataFromSupabase(
-    id, randomNumberForAvoidingCache
+    id
   );
 
   
 
   return (
     <>
-      <div>hi {randomNumberForAvoidingCache}</div>
       <AuthRouter
         pageName={"displayonesu"}
         allFetchedDataAboutSpecificSU={allFetchedDataAboutSpecificSU.props.fetchedData}

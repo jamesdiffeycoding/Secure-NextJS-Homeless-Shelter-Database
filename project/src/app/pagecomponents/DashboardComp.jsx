@@ -40,8 +40,8 @@ export default function DashboardComp({staffName}) {
   function getOrdinalSuffix(day) {
     const suffixes = ["th", "st", "nd", "rd"];
     const lastDigit = day % 10;
-    
-    if (lastDigit >= 1 && lastDigit <= 3 && day !== 11 && day !== 12 && day !== 13) {
+  
+    if ((lastDigit >= 1 && lastDigit <= 3) && (day < 11 || day > 13)) {
       return suffixes[lastDigit];
     } else {
       return suffixes[0];

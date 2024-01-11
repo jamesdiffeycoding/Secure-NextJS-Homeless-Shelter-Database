@@ -20,7 +20,6 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
   const [suDataState, setSuDataState] = useState(allFetchedDataAboutSpecificSU);
   // STATE FOR DATA LOAD
   const [data, setData] = useState([]);
-  const [statement, setStatement] = useState("Interests");
 
   useEffect(() => {
     async function fetchData() {
@@ -93,25 +92,6 @@ export default function DisplayOneSUComp({ allFetchedDataAboutSpecificSU, id }) 
     }
 
     fetchData();
-    // START OF INTEREST STATEMENT FORMULATION
-    let interestStatement = `${suDataState.service_users[0]?.first_name} loves `
-    if (suDataState.strengths[0]?.interest_text_one != undefined) {
-      interestStatement += suDataState.strengths[0]?.interest_text_one.toLowerCase()
-    }
-    if (suDataState.strengths[0]?.interest_text_two != undefined) {
-      interestStatement += ", "
-      interestStatement += suDataState.strengths[0]?.interest_text_two.toLowerCase()
-    }
-    if (suDataState.strengths[0]?.interest_text_three != undefined) {
-      interestStatement += " and "
-      interestStatement += suDataState.strengths[0]?.interest_text_three.toLowerCase()
-      interestStatement += "."
-    }
-    if(suDataState.strengths[0]?.interest_text_one==undefined && suDataState.strengths[0]?.interest_text_two==undefined && suDataState.strengths[0]?.interest_text_three == undefined) {
-      interestStatement = `Why not ask what ${suDataState.service_users[0]?.first_name} loves?`
-    }
-    setStatement(interestStatement)
-    // END OF INTEREST STATEMENT FORMULATION
   }, []);
   
   console.log("data state----")
@@ -261,14 +241,6 @@ async function supabaseUpdateOrInsertData(table) {
 // START OF RETURN STATEMENT
 return (
 <>
-{/* WELCOME BOX (1) */}
-<section className="global-welcome">
-    <h1 className="global-heading">Service user information
-    </h1>
-    <p className="global-description"> View and edit the information below</p>
-  </section>
-
-
 {/* START OF CONTENT BOX */}
 <section className="global-content">
   <div className="onesu-flexbox-top">
@@ -280,10 +252,12 @@ return (
     {/* MINI WELCOME BOX (2) DISPLAYING PROFILE NAME. */}
       <section className="global-welcome">
         <h1 className="global-heading">{suDataState.service_users[0]?.first_name}'s profile </h1>
-        <p className="global-description">{statement}</p>
+        <p className="global-description">{suDataState.service_users[0]?.first_name} loves {suDataState.strengths[0]?.interest_text_one.toLowerCase()
+              || "something peculiar"}, {suDataState.strengths[0]?.interest_text_two.toLowerCase() || "something musical"} and {suDataState.strengths[0]?.interest_text_three.toLowerCase() || "something surprising"}. 
+              </p>
       </section>
       <div className="onesu-avatar global-rounded-border">
-        <Image src={"/placeholderpersonblue.png"} alt="su avatar" width={120} height={120} priority className="onesu-avatar-pic global-rounded-border" />
+        <Image src={"/placeholderperson.png"} alt="su avatar" width={50} height={50} priority className="onesu-avatar-pic global-rounded-border" />
       </div>
     </div>
   

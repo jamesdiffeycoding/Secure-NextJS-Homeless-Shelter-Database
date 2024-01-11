@@ -3,23 +3,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    padding-bottom: 10px;
-    width: 100%
-    
+    /* padding: 10px; */
 }
 
 .flexbox-item-home {
-    
-    /* background-color: purple; */
-}
-
-.flexbox-item-date {
-    color: white;
-}
-
-
-.flexbox-item-status:hover {
-    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+    background-color: rgb(10, 80, 150);
     border-radius: 10px;
 }
+.flexbox-item-home:hover {
+    background-color: rgb(10, 80, 150,0.7);
+    transition: 1s;
+}
+

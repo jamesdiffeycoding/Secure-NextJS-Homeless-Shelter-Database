@@ -13,8 +13,7 @@ export default function Header({ staffName }) {
         <div className="flexbox-item-title">
         </div>
         <Image
-              className="global-button-shadow"
-              src="/placeholderpersonorange.png"
+              src="/placeholderpersonblue.png"
               alt="profile image"
               width="55"
               height="60"
