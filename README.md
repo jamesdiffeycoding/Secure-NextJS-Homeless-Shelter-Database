@@ -1,15 +1,3 @@
-**Hi, I’m James 👋** I'm currently looking for work in early 2024. 
-
-I love using code to build things that improve the world, even if its just making a user happy.
-
-I value quick and regular user feedback and Agile work practices. I have most experience with JS, TS, Next JS and React, and have recently made projects in Python, Django, Flask, GraphQL, and Ruby. 
-
-I have a particular passion for the environment and the wellbeing of those poorly served by society. My background includes mental health and climate change research at Imperial College London and a Master's Degree at the London School of Economics (achieved with Distinction).
-
-I am keen to become the best developer and teamplayer I can be. If you'd be up for a chat to share your experience, please drop me a line on email @jamesdiffeycoding@outlook.com or reach out on [LinkedIn](https://www.linkedin.com/in/jamesdiffey/)📫 
-
-
-
 # Recent Projects
 ### [Awesun: Solar Energy Visualiser (Vercel)](https://awesun-solar-visualiser.vercel.app/)
 
