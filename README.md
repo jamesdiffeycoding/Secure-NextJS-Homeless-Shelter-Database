@@ -2,7 +2,7 @@
 
 I love using code to build things that improve the world, even if its just making a user happy.
 
-I value quick and regular user feedback and Agile work practices. I have most experience with JS, Next JS and React, and have recently made projects in Python, Django, Flask, and Ruby. 
+I value quick and regular user feedback and Agile work practices. I have most experience with JS, TS, Next JS and React, and have recently made projects in Python, Django, Flask, GraphQL, and Ruby. 
 
 I have a particular passion for the environment and the wellbeing of those poorly served by society. My background includes mental health and climate change research at Imperial College London and a Master's Degree at the London School of Economics (achieved with Distinction).
 
