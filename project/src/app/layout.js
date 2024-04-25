@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Shelter App',
   description: 'Helping you to manage your shelter guest information',
+  icons: {
+    icon: '../favicon.ico', // /public path
+  }
 }
 
 export default function RootLayout({ children }) {
