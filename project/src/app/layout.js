@@ -10,7 +10,7 @@ export const metadata = {
   title: 'Shelter App',
   description: 'Helping you to manage your shelter guest information',
   icons: {
-    icon: '/favicon.ico', // /public path
+    icon: '../favicon.ico', // /public path
   }
 }
 
